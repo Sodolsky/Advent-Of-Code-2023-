@@ -2,6 +2,7 @@ const fs = require("fs");
 const filePath = "Day_4_Input.txt";
 const arr = [];
 let numOfWinsII = 0;
+let expArr = [1];
 function doubleNTimes(n) {
   if (n === 0) return 0;
   let result = 1;
@@ -34,12 +35,14 @@ function partI(arr) {
 function partII(arr) {
   const splitedArray = arr.map((x) => x.split(": ").pop().split(" | "));
   splitedArray.forEach((item, inx) => {
-    checkForWin(splitedArray, inx);
+    console.log(expArr);
+    for (let i = 0; i < expArr[inx]; i++) {
+      checkForWin(splitedArray, inx);
+    }
   });
   console.log(numOfWinsII);
 }
 function checkForWin(splitedArray, inx) {
-  console.log(inx + 1);
   const winningNumbers = splitedArray[inx][0]
     .split(" ")
     .filter((x) => x !== "")
@@ -54,6 +57,7 @@ function checkForWin(splitedArray, inx) {
   if (numberOfWins === 0) return;
   numOfWinsII += numberOfWins;
   for (let i = inx + 1; i < inx + numberOfWins; i++) {
+    expArr[i] ? (expArr[i] += 1) : (expArr[i] = 1);
     checkForWin(splitedArray, i);
   }
 }
