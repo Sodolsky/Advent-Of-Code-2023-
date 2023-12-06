@@ -1,5 +1,3 @@
-const fs = require("fs");
-
 const time = [47, 84, 74, 67];
 const distance = [207, 1394, 1209, 1014];
 const timePartII = 47847467;
